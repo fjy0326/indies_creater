@@ -1,31 +1,24 @@
-# indies_creater
-## サイト概要
-### サイトテーマ
-クリエイター向けの会員用作品紹介コミュニティサイト
+# README
 
-### テーマを選んだ理由
-クリエイター自身が発表する場がSNSしかなく、自分自身のホームページを持つよりも簡単に作品を紹介できるようなサイトがあれば気軽に作品の紹介が出来るのではないかと考えました。</br>
-またカテゴリや分類分けを行うことによって、そのクリエイターの作品とクリエイター自身が結びつきやすくなる「画廊」「ポートフォリオ置き場」的な役割があるものが現在はないと感じたため作成に至りました。</br>
-また作品受容者側も様々な別の作品を見つけることができるようにすることができると思っています。
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### ターゲットユーザ
-・音楽、動画、小説など様々な作品を楽しんでいる人</br>
-・自分自身で何かを作成している人
-​
-### 主な利用シーン
-・自分の製作物を発表する時</br>
-・自分の好きなジャンルの作品が発表されていないかどうかを検索する時
-​
-## 設計書
-・後ほど作成
-​
-## 開発環境
-・OS：Linux(CentOS)</br>
-・言語：HTML,CSS,JavaScript,Ruby,SQL</br>
-・フレームワーク：Ruby on Rails</br>
-・JSライブラリ：jQuery</br>
-・IDE：Cloud9
-​
-## 使用素材
-著作権を考慮し、架空のデータを扱う予定です。
-なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
