@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'posts/new'
   post 'posts' => 'posts#create'
-  get 'posts/index'
-  get 'posts/show'
+  get 'posts' => 'posts#index'
   get 'posts/edit'
+  get 'posts/:id' => 'posts#show', as: 'post'
   
   get 'users/mypage'
   get 'users/edit'
