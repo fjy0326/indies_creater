@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   get 'groups/edit'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get 'top' => 'homes#top'
-  get 'about' => 'homes#about'
+  get 'homes/top', to: 'homes#top', as: 'top'
+  get 'homes/about', to: 'homes#about', as: 'about'
   
 end
