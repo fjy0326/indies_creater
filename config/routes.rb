@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'posts/edit'
   get 'posts/:id' => 'posts#show', as: 'post'
   
+  
   get 'users/mypage'
   get 'users/edit'
   get 'users/show'
