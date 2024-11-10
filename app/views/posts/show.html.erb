@@ -1,3 +1,10 @@
+<p>作品<%= @post.id %></p>
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image, size: "200x200" %>
+  <% else %>
+    現在画像は投稿されていません。
+  <% end %>
+
 <h2>タイトル</h2>
 <p><%= @post.title %></p>
 
