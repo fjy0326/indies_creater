@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_10_044620) do
+ActiveRecord::Schema.define(version: 2024_11_17_134208) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,9 +48,18 @@ ActiveRecord::Schema.define(version: 2024_11_10_044620) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "musics", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "file"
+    t.integer "post_id", null: false
+    t.index ["post_id"], name: "index_musics_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -59,13 +68,17 @@ ActiveRecord::Schema.define(version: 2024_11_10_044620) do
     t.text "body"
     t.text "link"
     t.integer "user_id"
+    t.integer "genre"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "name"
+    t.integer "genre_id", null: false
+    t.index ["genre_id"], name: "index_posts_on_genre_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.text "profile"
+    t.integer "genres_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -74,10 +87,15 @@ ActiveRecord::Schema.define(version: 2024_11_10_044620) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.integer "genre_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["genre_id"], name: "index_users_on_genre_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "musics", "posts"
+  add_foreign_key "posts", "genres"
+  add_foreign_key "users", "genres"
 end

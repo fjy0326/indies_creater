@@ -4,5 +4,15 @@
 
   <p>タイトル</p>
   <span><%= link_to post.title, post_path(post) %></span>
-
+<% if @musics.present? %>
+ <% @musics.each do |t| %>
+    <div class="music">
+      <%= t.body %>
+　　　　<audio src= "<%= "#{t.file}" %>" controls="">
+         <a src="<%= "#{t.file}" %>">ダウンロード</a>
+       </audio>
+    </div>
+ <% end %>  
+  <% else %>
+  <% end %>
 <% end %>

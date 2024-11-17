@@ -1,1 +1,35 @@
-<h1>ここはTopページです</h1>
+<div class="container">
+ <div class="row">
+  <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+</br>
+<h1>Indies Creater <i class="fa-regular fa-square-plus"></i></i></h1>
+
+<br>お気に入りのクリエイターを見つけてフォローをしていこう！
+</br></br>
+
+<div><%= link_to "小説クリエイター一覧", creater_novel_path %></div></br>
+
+<div><%= link_to "音楽クリエイター一覧", creater_music_path %></div></br>
+
+<div><%= link_to "イラストクリエイター一覧", creater_illust_path %></div></br>
+
+<div><%= link_to "その他クリエイター一覧", creater_others_path %></div></br>
+
+<% unless user_signed_in? %>
+<br>
+<div class="btn-wrapper col-10 mx-auto">
+  <div class="row">
+  <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 Log_in" %>
+  </div>
+  <div class="row">
+<%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+  </div>
+</div>
+<% end %>
+
+ 
+  </div>
+ </div>
+</div>
+
+

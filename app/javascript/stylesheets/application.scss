@@ -1,1 +1,22 @@
 @use '~bootstrap/scss/bootstrap';
+
+@use 'custom.scss';
+
+@font-face {
+  font-family: 'KumarOne';
+  src: url('../fonts/KumarOne-Regular.otf') format('opentype');
+}
+
+body {
+  font-family: 'KumarOne';
+}
+
+.custom-font {
+  font-family: 'Times New Roman', serif; /* 任意のフォントを指定 */
+  font-size: 18px; /* 必要に応じてフォントサイズも変更 */
+  color: #333; /* 必要ならテキスト色を変更 */
+}
+
+.heading-title {
+  margin-top: 50px;
+}
