@@ -72,3 +72,9 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+#https://qiita.com/sayama0402/items/8c0ecac2bca3a76625ac 
+#medium-editorでMedium.comライクな投稿機能を導入する
+gem 'medium-editor-rails'
+gem 'medium-editor-insert-plugin-rails'
+

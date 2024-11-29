@@ -1,18 +1,43 @@
-<h1>投稿一覧</h1>
-
+<h1>作品一覧</h1>
+</br>
 <% @posts.each do |post| %>
+</br>
+  <table class="table">
+    <h1>作品<%= post.id %></h1>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>本文</th>
+        <th>画像</th>
+        <th>音声</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to post.title, post_path(post) %></td>
+        <td><%= truncate(post.body, length: 15) %></td>
+        
+        <% if post.image.attached? %>
+          <td><%= image_tag post.image, size: "200x200" %></td>
+        <% else %>
+          <td>No Image...</td>
+        <% end %>
 
-  <p>タイトル</p>
-  <span><%= link_to post.title, post_path(post) %></span>
-<% if @musics.present? %>
- <% @musics.each do |t| %>
-    <div class="music">
-      <%= t.body %>
-　　　　<audio src= "<%= "#{t.file}" %>" controls="">
-         <a src="<%= "#{t.file}" %>">ダウンロード</a>
-       </audio>
-    </div>
- <% end %>  
-  <% else %>
-  <% end %>
+        <% if @musics.present? %>
+          <td>
+            <% @musics.each do |music| %>
+              <div class="music">
+                <%= music.body %>
+                <audio src="<%= music.file %>" controls></audio>
+              </div>
+            <% end %>
+          </td>
+        <% else %>
+          <td>No music available.</td>
+        <% end %>
+        </br>
+      </tr>
+    </tbody>
+  </table>
 <% end %>

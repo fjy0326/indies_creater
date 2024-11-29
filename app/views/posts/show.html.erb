@@ -1,11 +1,8 @@
-<h1>作品一覧</h1>
-
-<% @posts.each do |post| %>
+<h1><%= @post.title %></h1>
+<h3><%= link_to @post.user.name, user_path %></h3>
   <table class="table">
-    <h1>作品<%= post.id %></h1>
     <thead>
       <tr>
-        <th>Title</th>
         <th>本文</th>
         <th>画像</th>
         <th>音声</th>
@@ -14,28 +11,33 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
+        <td><%= @post.body %></td>
         
-        <% if post.image.attached? %>
-          <td><%= image_tag post.image, size: "200x200" %></td>
+        <% if @post.image.attached? %>
+          <td><%= image_tag @post.image, size: "200x200" %></td>
         <% else %>
-          <td>現在画像は投稿されていません。</td>
+          <td>No Image...</td>
         <% end %>
 
         <% if @musics.present? %>
           <td>
             <% @musics.each do |music| %>
               <div class="music">
-                <%= music.body %>
-                <audio src="<%= music.file %>" controls></audio>
+                <%= @music.body %>
+                <audio src="<%= @music.file %>" controls></audio>
               </div>
             <% end %>
           </td>
         <% else %>
           <td>No music available.</td>
         <% end %>
+      #<% if current_user == @post.user %>
+      <td><%= link_to "Edit", edit_post_path(@post),class: "btn btn-sm btn-success" %></td>
+      <td><%= link_to "Destroy", post_path(@post), 
+            method: :delete, 
+            data: { confirm: "本当に削除しますか？" }, 
+            class: "btn btn-sm btn-danger" %></td>
+      <% end %>
       </tr>
     </tbody>
   </table>
-<% end %>
