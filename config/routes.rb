@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'users/:id/mypage' => 'users#mypage', as: 'mypage'
   get "users/profile" => "users#show"
   get 'users/index' => 'users#index'
-  get 'users/deactivate_confirm' => 'users#deactivate'
+  get 'users/deactivate' => 'users#deactivate_confirm'
   patch 'users/deactivate', to: 'users#deactivate', as: :deactivate_user
   resources :users, only: [:create, :edit, :update, :show]
 
