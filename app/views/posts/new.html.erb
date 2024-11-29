@@ -1,8 +1,16 @@
 <h1>投稿してみよう！<h1>
+  <% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
 <%= form_with model: @post, url: '/posts', method: :post do |f| %>
 
   <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, size:50 %>
 
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
@@ -20,7 +28,7 @@
   <%= f.text_area :introduction %></br>
   
   <h4>ジャンル</h4>
-  <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: true %></br>
+  <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { include_blank: true }, { required: 'required' } %></br>
 
   <%= f.submit '投稿' %>
 

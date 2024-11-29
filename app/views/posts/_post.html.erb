@@ -2,7 +2,6 @@
 
 <% @posts.each do |post| %>
   <table class="table">
-    <h1>作品<%= post.id %></h1>
     <thead>
       <tr>
         <th>Title</th>
@@ -14,13 +13,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= post.title %></td>
+        <td><%= link_to post.title, post_path(post) %></td>
         <td><%= post.body %></td>
         
         <% if post.image.attached? %>
           <td><%= image_tag post.image, size: "200x200" %></td>
         <% else %>
-          <td>現在画像は投稿されていません。</td>
+          <td>No Image...</td>
         <% end %>
 
         <% if @musics.present? %>
@@ -39,3 +38,4 @@
     </tbody>
   </table>
 <% end %>
+

@@ -1,17 +1,13 @@
-<div>
-  <h3><%= @user.name %></h3>
 
-  <%= image_tag @user.get_profile_image(100,100) %>
-  
-  <h4><%= @user.profile %></h4>
-  
-  <h4><%= @user.genre.name %></h4>
-  
-  <% if current_user == @user %>
-      <td><%= link_to "プロフィール編集", edit_user_path(@user.id),class: "btn btn-sm btn-success" %></td>
- <% end %>
-
- <%= render 'posts/post', posts: @posts %>
- 
+<div class="container px-5 px-sm-0">
+  <div class="row">
+     <div class="col-md-3">
+      <%= render 'users/user', users: @users %>
+      </div>
+      <div class="col-md-8 offset-md-1">
+      <%= render 'posts/post', posts: @posts %>
+     </div>
+  </div>
 </div>
+
 

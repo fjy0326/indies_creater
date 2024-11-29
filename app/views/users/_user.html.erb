@@ -1,0 +1,16 @@
+<div>
+  <h3><%= @user.name %></h3>
+
+  <%= image_tag @user.get_profile_image(100,100) %>
+  
+  <h4><%= @user.profile %></h4>
+  
+  <h4><%= @user.genre.name %></h4>
+  
+  <% if current_user == @user %>
+      <td><%= link_to "プロフィール編集", edit_user_path(@user.id),class: "btn btn-sm btn-success" %></td>
+      <td><%= link_to "退会",  users_deactivate_confirm_path, class: "btn btn-sm btn-success" %></td>
+  <% end %>
+ 
+</div>
+
