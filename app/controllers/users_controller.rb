@@ -12,15 +12,10 @@ before_action :authenticate_user!
   end
 
   def edit
-    if current_user.nil?
-      redirect_to user_session_path
-    else
     @user = User.find(params[:id])
-    if  @user == current_user
-    else
-      render :mypage
+    unless  @user.id == current_user.id
+      redirect_to mypage_path(current_user.id)
     end  
-    end
   end
 
   def show
@@ -45,6 +40,9 @@ before_action :authenticate_user!
   end
 
   def destroy
+  end
+  
+  def deactivate_confirm
   end
   
   def deactivate
