@@ -1,0 +1,45 @@
+<%= render 'public/searches/search' %>
+<h1>作品一覧</h1>
+</br>
+<% @posts.each do |post| %>
+</br>
+  <table class="table">
+    <h1><%= link_to " 作品 #{post.id}", post_path(post.id) %></h1>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>本文</th>
+        <th>画像</th>
+        <th>音声</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to post.title, post_path(post) %></td>
+        <td><%= truncate(post.body, length: 15) %></td>
+        
+        <% if post.image.attached? %>
+          <td><%= image_tag post.image, size: "200x200" %></td>
+        <% else %>
+          <td>No Image...</td>
+        <% end %>
+
+        <% if @musics.present? %>
+          <td>
+            <% @musics.each do |music| %>
+              <div class="music">
+                <%= music.body %>
+                <audio src="<%= music.file %>" controls></audio>
+              </div>
+            <% end %>
+          </td>
+        <% else %>
+          <td>No music available.</td>
+        <% end %>
+         <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+        </br>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

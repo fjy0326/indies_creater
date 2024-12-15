@@ -1,0 +1,17 @@
+<div class="container">
+ <div class="row　mt-5">
+  <h1>全ユーザー一覧</h1>
+
+<%= form_with url: delete_selected_admin_users_path, method: :delete, local: true do %>
+  <ul>
+    <% @users.each do |user| %>
+        <%= check_box_tag "user_ids[]", user.id %>
+        <%= user.name %> - <%= user.email %>
+    <% end %>
+  </ul>
+
+  <%= submit_tag '選択したユーザーを削除', data: { confirm: '選択したユーザーを本当に削除しますか？' } %>
+<% end %>
+
+ </div>
+</div>
