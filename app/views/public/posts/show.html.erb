@@ -1,0 +1,61 @@
+<h1><%= @post.title %></h1>
+<% if @post.user.present? %>
+  <h3><%= link_to @post.user.name, user_path(@post.user) %></h3>
+<% else %>
+  <h3>no name</h3>
+<% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>本文</th>
+        <th>画像</th>
+        <th>音声</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @post.body %></td>
+        
+        <% if @post.image.attached? %>
+          <td><%= image_tag @post.image, size: "200x200" %></td>
+        <% else %>
+          <td>No Image...</td>
+        <% end %>
+
+        <% if @musics.present? %>
+          <td>
+            <% @musics.each do |music| %>
+              <div class="music">
+                <%= @music.body %>
+                <audio src="<%= @music.file %>" controls></audio>
+              </div>
+            <% end %>
+          </td>
+        <% else %>
+          <td>No music available.</td>
+        <% end %>
+
+      <% if current_user == @post.user %>
+      <td><%= link_to "Edit", edit_post_path(@post),class: "btn btn-sm btn-success" %></td>
+      <td><%= link_to "Destroy", post_path(@post), 
+            method: :delete, 
+            data: { confirm: "本当に削除しますか？" }, 
+            class: "btn btn-sm btn-danger" %></td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+ <div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% end %>
+ </div>
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

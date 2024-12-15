@@ -10,3 +10,5 @@ genre = Genre.create!( name: "小説")
 genre = Genre.create!( name: "イラスト")
 genre = Genre.create!( name: "音楽")
 genre = Genre.create!( name: "その他")
+
+Admin.create!( email: "aiueo@aiueo", password: "aaaaaa")

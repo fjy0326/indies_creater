@@ -1,11 +1,27 @@
 Rails.application.routes.draw do
+
+devise_for :admin, skip: [:registrations, :password], controllers: {
+  sessions: 'admin/sessions'
+}
+  
+namespace :admin do
+  get 'dashboards', to: 'dashboards#index'
+  resources :users, except: [:show] do
+    delete :delete_selected, on: :collection # コレクションルートとして定義
+  end
+ end
+  
+scope module: :public do
   resources :musics
   devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
   root "homes#top"
-  
+
   get '/favicon.ico', to: redirect('/path/to/favicon.ico')
+  
+  get "search" => "searches#search"
+  get "searches/index" => "searches#index"
   
   get 'posts/new'
   post 'posts' => 'posts#create'
@@ -13,7 +29,9 @@ Rails.application.routes.draw do
   get 'posts/edit'
   get 'posts/:id' => 'posts#show', as: 'post'
   get 'posts/:id/edit' => 'posts#edit'
-  resources :posts, only: [:create, :edit, :update, :show, :destroy]
+  resources :posts, only: [:create, :edit, :update, :show, :destroy] do
+  resources :post_comments, only: [:create]
+  end
   
   get 'creater/illust' => 'creater#illust'
   get 'creater/music' => 'creater#music'
@@ -32,5 +50,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'homes/top', to: 'homes#top', as: 'top'
   get 'homes/about', to: 'homes#about', as: 'about'
+end
 
 end
