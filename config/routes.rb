@@ -6,7 +6,8 @@ devise_for :admin, skip: [:registrations, :password], controllers: {
   
 namespace :admin do
   get 'dashboards', to: 'dashboards#index'
-  resources :users, except: [:show] do
+  get 'users/edit' => 'users#edit'
+  resources :users, only: [:edit, :update, :destroy] do
     delete :delete_selected, on: :collection # コレクションルートとして定義
   end
  end
