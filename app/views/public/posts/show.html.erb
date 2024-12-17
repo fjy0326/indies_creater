@@ -36,6 +36,7 @@
           <td>No music available.</td>
         <% end %>
 
+
       <% if current_user == @post.user %>
       <td><%= link_to "Edit", edit_post_path(@post),class: "btn btn-sm btn-success" %></td>
       <td><%= link_to "Destroy", post_path(@post), 
@@ -51,11 +52,25 @@
   <% @post.post_comments.each do |post_comment| %>
     <%= post_comment.user.name %>
     <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <%= link_to "削除", post_post_comment_path(@post, post_comment), 
+            method: :delete, 
+            data: { confirm: "本当に削除しますか？" } %></br>
   <% end %>
  </div>
 <div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
+<%= form_with model: [@post, @post.post_comments.build] do |f| %>
+  <% if @post_comment.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>コメントにエラーがあります:</h4>
+      <ul>
+        <% @post_comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
 </div>
