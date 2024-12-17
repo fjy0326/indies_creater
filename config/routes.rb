@@ -3,15 +3,16 @@ Rails.application.routes.draw do
 devise_for :admin, skip: [:registrations, :password], controllers: {
   sessions: 'admin/sessions'
 }
-  
+
 namespace :admin do
   get 'dashboards', to: 'dashboards#index'
   get 'users/edit' => 'users#edit'
+  get 'comments' => 'comments#index'
   resources :users, only: [:edit, :update, :destroy] do
     delete :delete_selected, on: :collection # コレクションルートとして定義
   end
  end
-  
+
 scope module: :public do
   resources :musics
   devise_for :users, controllers: {
@@ -20,10 +21,10 @@ scope module: :public do
   root "homes#top"
 
   get '/favicon.ico', to: redirect('/path/to/favicon.ico')
-  
+
   get "search" => "searches#search"
   get "searches/index" => "searches#index"
-  
+
   get 'posts/new'
   post 'posts' => 'posts#create'
   get 'posts' => 'posts#index'
@@ -31,14 +32,14 @@ scope module: :public do
   get 'posts/:id' => 'posts#show', as: 'post'
   get 'posts/:id/edit' => 'posts#edit'
   resources :posts, only: [:create, :edit, :update, :show, :destroy] do
-  resources :post_comments, only: [:create]
+  resources :post_comments, only: [:index, :create, :destroy]
   end
-  
+
   get 'creater/illust' => 'creater#illust'
   get 'creater/music' => 'creater#music'
   get 'creater/novel' => 'creater#novel'
   get 'creater/others' => 'creater#others'
-  
+
   get 'users/:id/mypage' => 'users#mypage', as: 'mypage'
   get "users/profile" => "users#show"
   get 'users/index' => 'users#index'
