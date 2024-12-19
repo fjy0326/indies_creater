@@ -8,6 +8,7 @@ namespace :admin do
   get 'dashboards', to: 'dashboards#index'
   get 'users/edit' => 'users#edit'
   get 'comments' => 'comments#index'
+  resources :comments, only: [:index, :destroy]
   resources :users, only: [:edit, :update, :destroy] do
     delete :delete_selected, on: :collection # コレクションルートとして定義
   end
