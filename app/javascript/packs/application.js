@@ -21,17 +21,17 @@ ActiveStorage.start()
 //= require audiojs
 
 //mediumeditorの
-import MediumEditor from 'medium-editor';
-import 'medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin';
+//import MediumEditor from 'medium-editor';
+//import 'medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin';
 import $ from 'jquery';
 
 window.$ = $;
 window.jQuery = $;
 
 // MediumEditorの初期化例
-document.addEventListener('DOMContentLoaded', () => {
-  const editor = new MediumEditor('.editable');
-  console.log('MediumEditor initialized:', editor);
-});
+//document.addEventListener('DOMContentLoaded', () => {
+  //const editor = new MediumEditor('.editable');
+  //console.log('MediumEditor initialized:', editor);
+//});
 
 //= require rails-ujs
