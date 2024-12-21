@@ -53,9 +53,11 @@ scope module: :public do
   get 'users/index' => 'users#index'
   get 'users/deactivate' => 'users#deactivate_confirm'
   patch 'users/deactivate', to: 'users#deactivate', as: :deactivate_user
-  resources :users, only: [:create, :edit, :update, :show]
-
-
+  resources :users, only: [:index, :create, :edit, :update, :show] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
   get 'groups/edit'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'homes/top', to: 'homes#top', as: 'top'
