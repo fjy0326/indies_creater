@@ -15,8 +15,17 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_dashboards_path, notice: 'プロフィールが編集されました。'
     else
     redirect_to edit_admin_user_path(user.id), alert: '更新に失敗しました。'
+    end
    end
-  end
+ 
+   def destroy
+      @user = User.find(params[:id])
+     if @user.destroy
+       redirect_to admin_dashboards_path, notice: 'ユーザーが削除されました'
+     else
+       redirect_to admin_dashboards_path, alert: '削除できませんでした'
+     end
+   end
     
    def delete_selected
      if params[:user_ids].present?

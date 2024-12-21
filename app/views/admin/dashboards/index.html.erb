@@ -1,17 +1,10 @@
 <div class="container">
  <div class="row　mt-5">
-  <h1>全ユーザー一覧</h1>
+   
+<div><%= link_to "小説クリエイター一覧", admin_dashboards_novel_path %></div></br>
 
-<%= form_with url: delete_selected_admin_users_path, method: :delete, local: true do %>
-  <ul>
-    <% @users.each do |user| %>
-        <%= check_box_tag "user_ids[]", user.id %>
-        <%= link_to user.name, edit_admin_user_path(user.id) %> - <%= user.email %>
-    <% end %>
-  </ul>
+<div><%= link_to "音楽クリエイター一覧", admin_dashboards_music_path %></div></br>
 
-  <%= submit_tag '選択したユーザーを削除', data: { confirm: '選択したユーザーを本当に削除しますか？' } %>
-<% end %>
+<div><%= link_to "イラストクリエイター一覧", admin_dashboards_illust_path %></div></br>
 
- </div>
-</div>
+<div><%= link_to "その他クリエイター一覧", admin_dashboards_others_path %></div></br>

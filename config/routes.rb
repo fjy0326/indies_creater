@@ -8,6 +8,12 @@ namespace :admin do
   get 'dashboards', to: 'dashboards#index'
   get 'users/edit' => 'users#edit'
   get 'comments' => 'comments#index'
+  
+  get 'dashboards/illust' => 'dashboards#illust'
+  get 'dashboards/music' => 'dashboards#music'
+  get 'dashboards/novel' => 'dashboards#novel'
+  get 'dashboards/others' => 'dashboards#others'
+
   resources :comments, only: [:index, :destroy]
   resources :users, only: [:edit, :update, :destroy] do
     delete :delete_selected, on: :collection # コレクションルートとして定義
@@ -33,7 +39,8 @@ scope module: :public do
   get 'posts/:id' => 'posts#show', as: 'post'
   get 'posts/:id/edit' => 'posts#edit'
   resources :posts, only: [:create, :edit, :update, :show, :destroy] do
-  resources :post_comments, only: [:index, :create, :destroy]
+    resource :favorite, only: [:create, :destroy]
+    resources :post_comments, only: [:index, :create, :destroy]
   end
 
   get 'creater/illust' => 'creater#illust'
