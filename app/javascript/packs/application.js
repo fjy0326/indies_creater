@@ -33,3 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const editor = new MediumEditor('.editable');
   console.log('MediumEditor initialized:', editor);
 });
+
+//= require rails-ujs
