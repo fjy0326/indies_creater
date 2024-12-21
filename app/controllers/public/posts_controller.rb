@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
-  
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  
+
   def new
     if current_user.nil?
       redirect_to user_session_path
@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
   end
- 
+
   def show
     if current_user.nil?
       redirect_to user_session_path
@@ -55,18 +55,18 @@ class Public::PostsController < ApplicationController
     end
     end
   end
-  
+
 
   def update
     @user = @post.user
-    if @post.update(post_params) 
+    if @post.update(post_params)
     redirect_to @post, notice: '投稿が更新されました。'
     else
     flash[:alert] = '更新に失敗しました。'
     render :edit
     end
   end
-  
+
 
   def destroy
     @user = @post.user
@@ -75,7 +75,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :body, :image, :genre_id)
   end
@@ -89,7 +89,7 @@ class Public::PostsController < ApplicationController
     if params[:post][:musics].present?
       params.require(:post).permit(musics: [:file])[:musics].first || {}
     else
-      {} 
+      {}
     end
   end
 end
