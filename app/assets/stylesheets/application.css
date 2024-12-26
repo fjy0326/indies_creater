@@ -14,7 +14,3 @@
  *= require_self
  */
 
-@import '~medium-editor/dist/css/medium-editor';
-@import '~medium-editor/dist/css/themes/beagle';
-@import '~medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin';
-
