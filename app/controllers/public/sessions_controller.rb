@@ -1,5 +1,5 @@
 class Public::SessionsController < Devise::SessionsController
-  before_action :customer_state, only: [:create]
+  before_action :user_state, only: [:create]
 
   def after_sign_in_path_for(resource)
     about_path
@@ -17,7 +17,7 @@ class Public::SessionsController < Devise::SessionsController
   private
 
   def user_state
-    customer = User.find_by(email: params[:user][:email])
+    user = User.find_by(email: params[:user][:email])
     return if user.nil?
     return unless user.valid_password?(params[:user][:password])
   end
