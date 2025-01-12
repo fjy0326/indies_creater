@@ -17,7 +17,7 @@ class Public::SessionsController < Devise::SessionsController
   private
 
   def customer_state
-    customer = Customer.find_by(email: params[:customer][:email])
+    customer = Customer.find_by(email: params[:user][:email])
     return if customer.nil?
     return unless customer.valid_password?(params[:customer][:password])
   end
